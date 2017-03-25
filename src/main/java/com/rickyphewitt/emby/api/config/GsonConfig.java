@@ -6,16 +6,17 @@ import org.springframework.context.annotation.Configuration;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+import com.rickyphewitt.emby.api.data.Album;
+import com.rickyphewitt.emby.api.data.AlbumSet;
 import com.rickyphewitt.emby.api.data.Artist;
 import com.rickyphewitt.emby.api.data.ArtistSet;
-import com.rickyphewitt.emby.api.data.ItemSet;
+import com.rickyphewitt.emby.api.data.AuthenticationResult;
 import com.rickyphewitt.emby.api.data.User;
-import com.rickyphewitt.emby.api.data.wrappers.AuthenticationResult;
+import com.rickyphewitt.emby.api.deserializers.AlbumDeserializer;
+import com.rickyphewitt.emby.api.deserializers.AlbumSetDeserializer;
 import com.rickyphewitt.emby.api.deserializers.ArtistDeserializer;
 import com.rickyphewitt.emby.api.deserializers.ArtistSetDeserializer;
 import com.rickyphewitt.emby.api.deserializers.AuthenticationResultDeserializer;
-import com.rickyphewitt.emby.api.deserializers.ItemSetDeserializer;
 import com.rickyphewitt.emby.api.deserializers.UserDeserializer;
 
 @Configuration
@@ -31,7 +32,13 @@ public class GsonConfig {
 	ArtistDeserializer artistDeserializer;
 	
 	@Autowired
+	AlbumDeserializer albumDeserializer;
+	
+	@Autowired
 	ArtistSetDeserializer artistSetDeserializer;
+	
+	@Autowired
+	AlbumSetDeserializer albumSetDeserializer;
 	
 	@Bean
 	public Gson customGson() {
@@ -39,7 +46,9 @@ public class GsonConfig {
 		gsonBuilder.registerTypeAdapter(User.class, userDeserializer);
 		gsonBuilder.registerTypeAdapter(AuthenticationResult.class, authenticationResultDeserializer);
 		gsonBuilder.registerTypeAdapter(Artist.class, artistDeserializer);
+		gsonBuilder.registerTypeAdapter(Album.class, albumDeserializer);
 		gsonBuilder.registerTypeAdapter(ArtistSet.class, artistSetDeserializer);
+		gsonBuilder.registerTypeAdapter(AlbumSet.class, albumSetDeserializer);
 	
 		return gsonBuilder.create();
 	}

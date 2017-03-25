@@ -11,8 +11,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.rickyphewitt.emby.api.constants.EmbyJsonConstants;
+import com.rickyphewitt.emby.api.data.AuthenticationResult;
 import com.rickyphewitt.emby.api.data.User;
-import com.rickyphewitt.emby.api.data.wrappers.AuthenticationResult;
 
 @Service
 public class AuthenticationResultDeserializer implements JsonDeserializer<AuthenticationResult>{

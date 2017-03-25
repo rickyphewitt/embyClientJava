@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rickyphewitt.emby.api.client.ApiV1Client;
-import com.rickyphewitt.emby.api.data.Artist;
-import com.rickyphewitt.emby.api.data.ItemSet;
+import com.rickyphewitt.emby.api.data.AlbumSet;
+import com.rickyphewitt.emby.api.data.ArtistSet;
 
 @Service
 public class SampleService {
@@ -19,7 +19,11 @@ public class SampleService {
 		apiClient.authenticateByName();
 	}
 	
-	public ItemSet<Artist> getArtists() {
+	public ArtistSet getArtists() {
 		return apiClient.getArtists();
+	}
+	
+	public AlbumSet getAlbumsByArtist(String artistId) {
+		return apiClient.getAlbumsByArtist(artistId);
 	}
 }

@@ -1,6 +1,4 @@
-package com.rickyphewitt.emby.api.data.wrappers;
-
-import com.rickyphewitt.emby.api.data.User;
+package com.rickyphewitt.emby.api.data;
 
 public class AuthenticationResult {
 	

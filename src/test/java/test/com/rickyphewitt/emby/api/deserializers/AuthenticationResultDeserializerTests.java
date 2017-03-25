@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.rickyphewitt.emby.api.constants.EmbyJsonConstants;
+import com.rickyphewitt.emby.api.data.AuthenticationResult;
 import com.rickyphewitt.emby.api.data.User;
-import com.rickyphewitt.emby.api.data.wrappers.AuthenticationResult;
 import com.rickyphewitt.emby.api.deserializers.AuthenticationResultDeserializer;
 import com.rickyphewitt.emby.api.deserializers.UserDeserializer;
 

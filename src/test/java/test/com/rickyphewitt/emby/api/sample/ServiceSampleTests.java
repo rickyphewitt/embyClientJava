@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.rickyphewitt.emby.api.data.Artist;
-import com.rickyphewitt.emby.api.data.ItemSet;
+import com.rickyphewitt.emby.api.data.AlbumSet;
+import com.rickyphewitt.emby.api.data.ArtistSet;
 import com.rickyphewitt.emby.api.sample.SampleService;
 
 import junit.framework.Assert;
@@ -22,11 +22,17 @@ public class ServiceSampleTests {
 	
 	@Test
 	public void login() {
+		// Log into emby server
 		sampleService.login();
 	
-		ItemSet<Artist> artists = sampleService.getArtists();
+		// get all artists
+		ArtistSet artists = sampleService.getArtists();
+		Assert.assertTrue(artists.getItems().size() > 0);
 		
-		Assert.assertTrue(artists.getItems().size() > 1);
+		// get albums by artist
+		AlbumSet albums = sampleService.getAlbumsByArtist(artists.getItems().get(0).getId());
+		Assert.assertTrue(albums.getItems().size() > 0);
+		
 		
 		
 	}

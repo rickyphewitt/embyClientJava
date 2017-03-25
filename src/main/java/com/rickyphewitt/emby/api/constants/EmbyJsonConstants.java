@@ -13,6 +13,10 @@ public class EmbyJsonConstants {
 	public static final String ITEMS = "Items";
 	public static final String ITEM_TYPE = "Type";
 	
+	// Item Types
+	public static final String MUSIC_ARTIST = "MusicArtist";
+	public static final String MUSIC_ALBUM = "MusicAlbum";
+	
 	// Artist constants
 	public static final String ARTIST_IS_FOLDER = "IsFolder";
 	//public static final String ARTIST_PLAY_ACCESS = "PlayAccess";
