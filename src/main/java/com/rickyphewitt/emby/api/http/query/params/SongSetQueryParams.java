@@ -5,14 +5,14 @@ import org.springframework.util.MultiValueMap;
 
 import com.rickyphewitt.emby.api.constants.EmbyQueryParameterConstants;
 
-public class AlbumSetQueryParams implements QueryParams {
+public class SongSetQueryParams implements QueryParams {
 
-	private String artistId;
+	private String albumId;
 	
-	public AlbumSetQueryParams(){}
+	public SongSetQueryParams(){}
 
-	public AlbumSetQueryParams(String artistId){
-		this.artistId = artistId;
+	public SongSetQueryParams(String albumId){
+		this.albumId = albumId;
 	}
 	
 	@Override
@@ -20,10 +20,7 @@ public class AlbumSetQueryParams implements QueryParams {
 		MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
 		
 		queryParams.set(EmbyQueryParameterConstants.SORT_BY, "SortName");
-		queryParams.set(EmbyQueryParameterConstants.SORT_ORDER, "Ascending");
-		queryParams.set(EmbyQueryParameterConstants.INCLUDE_ITEM_TYPES, "MusicAlbum");
-		queryParams.set(EmbyQueryParameterConstants.RECURSIVE, "true");
-		queryParams.set(EmbyQueryParameterConstants.ARTIST_IDS, this.artistId);
+		queryParams.set(EmbyQueryParameterConstants.PARENT_ID, this.albumId);
 		
 		return queryParams;
 	}

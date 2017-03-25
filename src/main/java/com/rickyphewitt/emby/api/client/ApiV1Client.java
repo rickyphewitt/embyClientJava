@@ -15,8 +15,10 @@ import com.rickyphewitt.emby.api.data.Artist;
 import com.rickyphewitt.emby.api.data.ArtistSet;
 import com.rickyphewitt.emby.api.data.AuthenticationRequest;
 import com.rickyphewitt.emby.api.data.AuthenticationResult;
+import com.rickyphewitt.emby.api.data.SongSet;
 import com.rickyphewitt.emby.api.http.query.params.AlbumSetQueryParams;
 import com.rickyphewitt.emby.api.http.query.params.QueryParams;
+import com.rickyphewitt.emby.api.http.query.params.SongSetQueryParams;
 
 @Service
 public class ApiV1Client {
@@ -70,6 +72,15 @@ public class ApiV1Client {
 		AlbumSetQueryParams queryParams = new AlbumSetQueryParams(artistId);
 		URI targetUrl= buildUrlWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
 		return restTemplate.getForObject(targetUrl, AlbumSet.class);
+	}
+	
+	public SongSet getAlbumSongs(String albumId) {
+		//http://emby:8096/Items?ParentId=2e9d34a5c37842d768ee9c6c2ebe4a15&SortBy=SortName
+		SongSetQueryParams queryParams = new SongSetQueryParams(albumId);
+		URI targetUrl= buildUrlWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
+		return restTemplate.getForObject(targetUrl, SongSet.class);
+		
+		
 	}
 	
 	// Getters

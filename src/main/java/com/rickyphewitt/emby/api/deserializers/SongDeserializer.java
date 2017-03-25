@@ -10,16 +10,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.rickyphewitt.emby.api.constants.EmbyJsonConstants;
-import com.rickyphewitt.emby.api.data.Artist;
+import com.rickyphewitt.emby.api.data.Song;
 
 @Service
-public class ArtistDeserializer implements JsonDeserializer<Artist>{
+public class SongDeserializer implements JsonDeserializer<Song>{
 
 	@Override
-	public Artist deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+	public Song deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 			throws JsonParseException {
 	
-		Artist artist = new Artist();
+		Song song = new Song();
 		
 		// Parse out elements
 		JsonObject jsonObj = json.getAsJsonObject();
@@ -27,34 +27,39 @@ public class ArtistDeserializer implements JsonDeserializer<Artist>{
 				
 		JsonElement jsonVal = jsonObj.get(EmbyJsonConstants.ID);	
 		if(!DeserializerHelper.isNull(jsonVal)){
-			artist.setId(jsonVal.getAsString());
+			song.setId(jsonVal.getAsString());
 		}		
 		
 		jsonVal = jsonObj.get(EmbyJsonConstants.NAME);	
 		if(!DeserializerHelper.isNull(jsonVal)){
-			artist.setName(jsonVal.getAsString());
+			song.setName(jsonVal.getAsString());
 		}
 		
 		jsonVal = jsonObj.get(EmbyJsonConstants.SERVER_ID);	
 		if(!DeserializerHelper.isNull(jsonVal)){
-			artist.setServerId(jsonVal.getAsString());
+			song.setServerId(jsonVal.getAsString());
 		}	
 		
 		jsonVal = jsonObj.get(EmbyJsonConstants.ITEM_TYPE);	
 		if(!DeserializerHelper.isNull(jsonVal)){
-			artist.setType(jsonVal.getAsString());
+			song.setType(jsonVal.getAsString());
 		}	
 		
-		jsonVal = jsonObj.get(EmbyJsonConstants.ARTIST_IS_FOLDER);	
+		jsonVal = jsonObj.get(EmbyJsonConstants.SONG_CONTAINER);	
 		if(!DeserializerHelper.isNull(jsonVal)){
-			artist.setIsFolder(jsonVal.getAsBoolean());
+			song.setContainer(jsonVal.getAsString());
 		}
 		
 		jsonVal = jsonObj.get(EmbyJsonConstants.MEDIA_RUN_TIME_TICKS);	
 		if(!DeserializerHelper.isNull(jsonVal)){
-			artist.setRunTimeTicks(jsonVal.getAsInt());
+			song.setRunTimeTicks(jsonVal.getAsInt());
 		}
 		
-		return artist;
+		jsonVal = jsonObj.get(EmbyJsonConstants.SONG_TRACK_NUMBER);	
+		if(!DeserializerHelper.isNull(jsonVal)){
+			song.setTrackNumber(jsonVal.getAsInt());
+		}
+		
+		return song;
 	}
 }

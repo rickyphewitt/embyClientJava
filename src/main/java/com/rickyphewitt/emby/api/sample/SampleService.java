@@ -1,11 +1,13 @@
 package com.rickyphewitt.emby.api.sample;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 import com.rickyphewitt.emby.api.client.ApiV1Client;
 import com.rickyphewitt.emby.api.data.AlbumSet;
 import com.rickyphewitt.emby.api.data.ArtistSet;
+import com.rickyphewitt.emby.api.data.SongSet;
 
 @Service
 public class SampleService {
@@ -15,6 +17,7 @@ public class SampleService {
 	
 	public SampleService() {}
 	
+	@Retryable(maxAttempts = 5)
 	public void login() {
 		apiClient.authenticateByName();
 	}
@@ -25,5 +28,10 @@ public class SampleService {
 	
 	public AlbumSet getAlbumsByArtist(String artistId) {
 		return apiClient.getAlbumsByArtist(artistId);
+	}
+	
+	public SongSet getSongsFromAlbum(String albumId) {
+		return apiClient.getAlbumSongs(albumId);
+		
 	}
 }

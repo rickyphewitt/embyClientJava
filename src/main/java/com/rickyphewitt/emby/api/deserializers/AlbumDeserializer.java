@@ -50,7 +50,7 @@ public class AlbumDeserializer implements JsonDeserializer<Album>{
 			album.setIsFolder(jsonVal.getAsBoolean());
 		}
 		
-		jsonVal = jsonObj.get(EmbyJsonConstants.ARTIST_RUN_TIME_TICKS);	
+		jsonVal = jsonObj.get(EmbyJsonConstants.MEDIA_RUN_TIME_TICKS);	
 		if(!DeserializerHelper.isNull(jsonVal)){
 			album.setRunTimeTicks(jsonVal.getAsInt());
 		}
