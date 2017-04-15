@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,9 +38,12 @@ public class Config {
 		
 		// Build up gson message convertor and set custom gson
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+		ResourceHttpMessageConverter resourceHttpMessageConverter = new ResourceHttpMessageConverter();
 		GsonHttpMessageConverter gsonHttpMessageConverter = new GsonHttpMessageConverter();
 		gsonHttpMessageConverter.setGson(customGson);
 		messageConverters.add(gsonHttpMessageConverter);
+		messageConverters.add(resourceHttpMessageConverter);
+		messageConverters.add(new ByteArrayHttpMessageConverter());
 	
 		// Build restTemplate with message converters and interceptors
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());

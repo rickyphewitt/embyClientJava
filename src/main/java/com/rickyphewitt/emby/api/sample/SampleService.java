@@ -34,4 +34,9 @@ public class SampleService {
 		return apiClient.getAlbumSongs(albumId);
 		
 	}
+	
+	public byte[] getSong(String songId) {
+		return apiClient.getSong(songId);
+		
+	}
 }

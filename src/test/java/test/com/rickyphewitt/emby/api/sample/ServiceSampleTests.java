@@ -38,6 +38,9 @@ public class ServiceSampleTests {
 		SongSet songs = sampleService.getSongsFromAlbum(albums.getItems().get(0).getId());
 		Assert.assertTrue(songs.getItems().size() > 0);
 		
+		// get single song
+		byte[] songFile = sampleService.getSong(songs.getItems().get(0).getId());
+		Assert.assertNotNull(songFile);
 		
 		
 	}

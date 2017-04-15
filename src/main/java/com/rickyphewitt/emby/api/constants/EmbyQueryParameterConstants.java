@@ -8,6 +8,9 @@ public class EmbyQueryParameterConstants {
 	public static final String RECURSIVE = "Recursive";
 	public static final String ARTIST_IDS = "ArtistIds";
 	public static final String PARENT_ID = "ParentId";
+	
+	// Stream parameters
+	public static final String STATIC = "static";
 
 	
 	

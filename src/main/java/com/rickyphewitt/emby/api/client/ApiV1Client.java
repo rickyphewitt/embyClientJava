@@ -18,6 +18,7 @@ import com.rickyphewitt.emby.api.data.AuthenticationResult;
 import com.rickyphewitt.emby.api.data.SongSet;
 import com.rickyphewitt.emby.api.http.query.params.AlbumSetQueryParams;
 import com.rickyphewitt.emby.api.http.query.params.QueryParams;
+import com.rickyphewitt.emby.api.http.query.params.SongQueryParams;
 import com.rickyphewitt.emby.api.http.query.params.SongSetQueryParams;
 
 @Service
@@ -70,16 +71,24 @@ public class ApiV1Client {
 	 */
 	public AlbumSet getAlbumsByArtist(String artistId) {
 		AlbumSetQueryParams queryParams = new AlbumSetQueryParams(artistId);
-		URI targetUrl= buildUrlWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
+		URI targetUrl= buildUriWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
 		return restTemplate.getForObject(targetUrl, AlbumSet.class);
 	}
 	
 	public SongSet getAlbumSongs(String albumId) {
 		//http://emby:8096/Items?ParentId=2e9d34a5c37842d768ee9c6c2ebe4a15&SortBy=SortName
 		SongSetQueryParams queryParams = new SongSetQueryParams(albumId);
-		URI targetUrl= buildUrlWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
+		URI targetUrl= buildUriWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
 		return restTemplate.getForObject(targetUrl, SongSet.class);
 		
+		
+	}
+	
+	public byte[] getSong(String songId) {
+		//http://emby:8096/Audio/d45874f39662b31167c40062986acddc/stream.mp3?static=true
+		SongQueryParams queryParams = new SongQueryParams();
+		URI targetUri= buildUriWithQueryParams("/"+ EmbyUrlConstants.AUDIO + "/" + songId + "/" + EmbyUrlConstants.STREAM_MP3, queryParams);
+		return restTemplate.getForObject(targetUri, byte[].class);
 		
 	}
 	
@@ -97,7 +106,7 @@ public class ApiV1Client {
 		return authRequest;
 	}
 	
-	private URI buildUrlWithQueryParams(String path, QueryParams queryParams) {
+	private URI buildUriWithQueryParams(String path, QueryParams queryParams) {
 		URI targetUrl= UriComponentsBuilder.fromUriString(embyUrl)
 			    .path(path)
 			    .replaceQueryParams(queryParams.getQueryParams())
