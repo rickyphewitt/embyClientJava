@@ -3,12 +3,15 @@ package test.com.rickyphewitt.emby.api.sample;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.rickyphewitt.emby.api.data.AlbumSet;
 import com.rickyphewitt.emby.api.data.ArtistSet;
+import com.rickyphewitt.emby.api.data.PublicServerInfo;
 import com.rickyphewitt.emby.api.data.SongSet;
+import com.rickyphewitt.emby.api.data.UserSet;
 import com.rickyphewitt.emby.api.sample.SampleService;
 
 import junit.framework.Assert;
@@ -21,8 +24,19 @@ public class ServiceSampleTests {
 	@Autowired
 	SampleService sampleService;
 	
+	@Value("${emby.url}")
+	private String embyUrl;
+	
 	@Test
 	public void login() {
+		// Get public server info
+		PublicServerInfo serverInfo = sampleService.getPublicServerInfo(embyUrl);
+		Assert.assertTrue(serverInfo != null);
+
+		UserSet users = sampleService.getPublicUsers();
+		Assert.assertTrue(users.getItems().size() > 0);
+		
+		
 		// Log into emby server
 		sampleService.login();
 	

@@ -10,9 +10,20 @@ public class EmbyJsonConstants {
 	// Server constants
 	public static final String ACCESS_TOKEN = "AccessToken";
 	
+	// Public Server Constants
+	public static final String PUBLIC_SERVER_LOCAL_ADDRESS = "LocalAddress";
+	public static final String PUBLIC_SERVER_OPERATING_SYSTEM = "OperatingSystem";
+	public static final String PUBLIC_SERVER_SERVER_NAME = "ServerName";
+	public static final String PUBLIC_SERVER_VERSION = "Version";
+	public static final String PUBLIC_SERVER_WAN_ADDRESS = "WanAddress";
+	
 	// Item constants
 	public static final String ITEMS = "Items";
 	public static final String ITEM_TYPE = "Type";
+	
+	// User constants
+	public static final String USER_HAS_PASSWORD = "HasPassword";
+	public static final String USER_ENABLE_AUTOLOGIN = "EnableAutoLogin";
 	
 	// Media constants
 	public static final String MEDIA_RUN_TIME_TICKS = "RunTimeTicks";

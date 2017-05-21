@@ -32,9 +32,23 @@ public class UserDeserializer implements JsonDeserializer<User> {
 		}
 		
 		jsonVal = jsonObj.get(EmbyJsonConstants.NAME);
-		
 		if(!DeserializerHelper.isNull(jsonVal)) {
 			user.setName(jsonVal.getAsString());
+		}
+		
+		jsonVal = jsonObj.get(EmbyJsonConstants.USER_HAS_PASSWORD);
+		if(!DeserializerHelper.isNull(jsonVal)) {
+			user.setHasPassword(jsonVal.getAsBoolean());
+		}
+		
+		jsonVal = jsonObj.get(EmbyJsonConstants.USER_ENABLE_AUTOLOGIN);
+		if(!DeserializerHelper.isNull(jsonVal)) {
+			user.setEnableAutoLogin(jsonVal.getAsBoolean());
+		}
+
+		jsonVal = jsonObj.get(EmbyJsonConstants.SERVER_ID);
+		if(!DeserializerHelper.isNull(jsonVal)) {
+			user.setServerId(jsonVal.getAsString());
 		}
 		
 		return user;

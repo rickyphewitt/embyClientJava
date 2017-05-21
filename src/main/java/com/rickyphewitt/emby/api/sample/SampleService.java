@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import com.rickyphewitt.emby.api.client.ApiV1Client;
 import com.rickyphewitt.emby.api.data.AlbumSet;
 import com.rickyphewitt.emby.api.data.ArtistSet;
+import com.rickyphewitt.emby.api.data.PublicServerInfo;
 import com.rickyphewitt.emby.api.data.SongSet;
+import com.rickyphewitt.emby.api.data.UserSet;
 
 @Service
 public class SampleService {
@@ -16,6 +18,14 @@ public class SampleService {
 	ApiV1Client apiClient;
 	
 	public SampleService() {}
+	
+	public PublicServerInfo getPublicServerInfo(String url) {
+		return apiClient.getPublicServerInfo(url);
+	}
+	
+	public UserSet getPublicUsers() {
+		return apiClient.getPublicUsers();
+	}
 	
 	@Retryable(maxAttempts = 5)
 	public void login() {

@@ -40,6 +40,11 @@ public class XEmbyAuthorizationInterceptor implements ClientHttpRequestIntercept
 	public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
 			throws IOException {
         
+		// short circuit for public methods that do not require auth
+		if(request.getURI().toString().contains("Public")) {
+			return execution.execute(request, body);
+		}
+		
 		// E.g. MediaBrowser Client="Emby Mobile", Device="Chrome", DeviceId="18952fb30d9ac6cd8c22335dd3f043a75c62af29", Version="3.2.5.0"
 		String authHeader = AUTHORIZATION + " " + 
 		String.format("Client=\"%1$s\", DeviceId=\"%2$s\", Device=\"%3$s\", Version=\"%4$s\"", clientName, deviceId, deviceName, embyVersion);
