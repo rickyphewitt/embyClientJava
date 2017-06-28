@@ -8,6 +8,9 @@ An alternative API client for Emby Media Server based on: https://github.com/Med
  * Leverages Spring Boot
  * All API calls are syncronous
 
+## Build
+* mvn clean install
+* Then include in a java project of your choice
 
 ## NOTE: This API Client is in ALPHA (PRE) 
 * Expect breaking changes!
