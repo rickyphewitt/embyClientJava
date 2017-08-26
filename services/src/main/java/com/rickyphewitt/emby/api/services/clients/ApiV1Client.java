@@ -72,7 +72,7 @@ public class ApiV1Client {
 	 */
 	public UserSet getPublicUsers() {
 		//users/public
-		return restTemplate.getForObject(embyUrl + "/" + EmbyUrlConstants.PUBLIC_USERS, UserSet.class);
+		return restTemplate.getForObject(this.embyUrl + "/" + EmbyUrlConstants.PUBLIC_USERS, UserSet.class);
 		
 	}
 	
@@ -184,6 +184,32 @@ public class ApiV1Client {
 			    .toUri();
 		
 		return targetUrl;
+	}
+
+	// Getters/Setters
+	
+	public String getEmbyUrl() {
+		return embyUrl;
+	}
+
+	public void setEmbyUrl(String embyUrl) {
+		this.embyUrl = embyUrl;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
