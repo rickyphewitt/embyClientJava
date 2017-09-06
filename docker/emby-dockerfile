@@ -1,0 +1,2 @@
+FROM pe6fzh5mbnrc3c33m8zk/emby-api-client-testing
+ADD ./Media /Media

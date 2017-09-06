@@ -1,4 +1,16 @@
 version: '2'
 services:
-  embyserver:
-    image: "emby/embyserver"
+  emby:
+    build:
+      context: .
+      dockerfile: emby-dockerfile
+    volumes:
+        - ./emby-config:/config
+    ports:
+      - "8096:8096"
+  build:
+    build: ../.
+    depends_on:
+      - emby
+    environment:
+      - ENTRYPOINT=/usr/bin/mvn clean install
