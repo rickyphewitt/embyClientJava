@@ -49,4 +49,8 @@ public class SampleService {
 		return apiClient.getSong(songId);
 		
 	}
+
+	public String getPrimaryImage(String itemId, String imageTag) {
+		return apiClient.getPrimaryImageUrl(itemId, imageTag);
+	}
 }

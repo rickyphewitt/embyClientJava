@@ -27,6 +27,8 @@ public class EmbyJsonConstants {
 	
 	// Media constants
 	public static final String MEDIA_RUN_TIME_TICKS = "RunTimeTicks";
+	public static final String IMAGE_TAGS = "ImageTags";
+	public static final String IMAGE_PRIMARY = "Primary";
 	
 	// Item Types
 	public static final String MUSIC_ARTIST = "MusicArtist";

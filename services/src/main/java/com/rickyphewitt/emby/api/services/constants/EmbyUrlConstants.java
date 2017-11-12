@@ -8,6 +8,9 @@ public class EmbyUrlConstants {
 	public static final String ARTISTS = "Artists";
 	public static final String ITEMS = "Items";
 	public static final String AUDIO = "Audio";
+	public static final String IMAGES = "Images";
+	public static final String IMAGES_PRIMARY = IMAGES + "/Primary";
+
 	
 	public static final String STREAM_MP3 = "stream.mp3";
 }

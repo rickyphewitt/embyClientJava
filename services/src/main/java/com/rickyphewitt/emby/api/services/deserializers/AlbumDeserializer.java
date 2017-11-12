@@ -1,14 +1,12 @@
 package com.rickyphewitt.emby.api.services.deserializers;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.google.gson.*;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.rickyphewitt.emby.api.data.Album;
 import com.rickyphewitt.emby.api.services.constants.EmbyJsonConstants;
 
@@ -53,6 +51,17 @@ public class AlbumDeserializer implements JsonDeserializer<Album>{
 		jsonVal = jsonObj.get(EmbyJsonConstants.MEDIA_RUN_TIME_TICKS);	
 		if(!DeserializerHelper.isNull(jsonVal)){
 			album.setRunTimeTicks(jsonVal.getAsInt());
+		}
+
+		JsonObject image_tags = jsonObj.getAsJsonObject(EmbyJsonConstants.IMAGE_TAGS);
+		if(!DeserializerHelper.isNull(image_tags)){
+			jsonVal = image_tags.get(EmbyJsonConstants.IMAGE_PRIMARY);
+			if(!DeserializerHelper.isNull(jsonVal)) {
+				album.setPrimaryImage(jsonVal.getAsString());
+				Map<String, String> images = new HashMap<String, String>();
+				images.put(EmbyJsonConstants.IMAGE_PRIMARY, jsonVal.getAsString());
+				album.setImageTags(images);
+			}
 		}
 		
 		return album;

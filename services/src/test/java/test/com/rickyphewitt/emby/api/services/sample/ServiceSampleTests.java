@@ -53,7 +53,7 @@ public class ServiceSampleTests {
 		Assert.assertTrue(artists.getItems().size() > 0);
 
 		// get albums by artist
-		AlbumSet albums = sampleService.getAlbumsByArtist(artists.getItems().get(0).getId());
+		AlbumSet albums = sampleService.getAlbumsByArtist(artists.getItems().get(1).getId());
 		Assert.assertTrue(albums.getItems().size() > 0);
 
 		// get songs by album
@@ -63,6 +63,10 @@ public class ServiceSampleTests {
 		// get single song
 		byte[] songFile = sampleService.getSong(songs.getItems().get(0).getId());
 		Assert.assertNotNull(songFile);
+
+		// get primareyImage url
+		String primaryImage = sampleService.getPrimaryImage(albums.getItems().get(0).getId(), albums.getItems().get(0).getPrimaryImage());
+		Assert.assertNotNull(primaryImage);
 
 
 	}

@@ -8,7 +8,12 @@ public class EmbyQueryParameterConstants {
 	public static final String RECURSIVE = "Recursive";
 	public static final String ARTIST_IDS = "ArtistIds";
 	public static final String PARENT_ID = "ParentId";
-	
+	public static final String TAG = "tag";
+
+	// image parameters
+	public static final String MAX_HEIGHT = "maxHeight";
+	public static final String QUALITY = "quality";
+
 	// Stream parameters
 	public static final String STATIC = "static";
 

@@ -2,6 +2,7 @@ package com.rickyphewitt.emby.api.services.clients;
 
 import java.net.URI;
 
+import com.rickyphewitt.emby.api.services.http.query.params.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,6 @@ import com.rickyphewitt.emby.api.data.PublicServerInfo;
 import com.rickyphewitt.emby.api.data.SongSet;
 import com.rickyphewitt.emby.api.data.UserSet;
 import com.rickyphewitt.emby.api.services.constants.EmbyUrlConstants;
-import com.rickyphewitt.emby.api.services.http.query.params.AlbumSetQueryParams;
-import com.rickyphewitt.emby.api.services.http.query.params.QueryParams;
-import com.rickyphewitt.emby.api.services.http.query.params.SongQueryParams;
-import com.rickyphewitt.emby.api.services.http.query.params.SongSetQueryParams;
 
 @Service
 public class ApiV1Client {
@@ -161,7 +158,15 @@ public class ApiV1Client {
 		return restTemplate.getForObject(targetUri, byte[].class);
 		
 	}
-	
+
+	public String getPrimaryImageUrl(String itemId, String primaryTag) {
+		//"http://localhost:8096/emby/Items/a6b41791f2d07620d1f6123d55354c71/Images/Primary?maxHeight=360&amp;tag=4041ccdb46948cb14c1a1eca75e18e60&amp;quality=90">
+		//@toDo use image quality and size from a config file, or as params in method
+		PrimaryImageQueryParams queryParams = new PrimaryImageQueryParams(primaryTag);
+		URI targetUri = buildUriWithQueryParams("/"+ EmbyUrlConstants.ITEMS + "/" + itemId + "/" + EmbyUrlConstants.IMAGES_PRIMARY, queryParams);
+		return targetUri.toString();
+	}
+
 	// Getters
 	public static String getAccessToken() {
 		return accessToken;
