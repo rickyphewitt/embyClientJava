@@ -53,4 +53,8 @@ public class SampleService {
 	public String getPrimaryImage(String itemId, String imageTag) {
 		return apiClient.getPrimaryImageUrl(itemId, imageTag);
 	}
+
+	public byte[] getImage(String url) {
+		return apiClient.getImage(url);
+	}
 }

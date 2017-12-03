@@ -137,6 +137,7 @@ public class ApiV1Client {
 	 * @see			AlbumSetQueryParams
 	 */
 	public AlbumSet getAlbumsByArtist(String artistId) {
+		//http://emby:8096/Items?SortBy=SortName&SortOrder=Ascending&IncludeItemTypes=MusicAlbum&Recursive=true&ArtistIds=3c328d23e110ee9d4fbe6b1302635e32
 		AlbumSetQueryParams queryParams = new AlbumSetQueryParams(artistId);
 		URI targetUrl= buildUriWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
 		return restTemplate.getForObject(targetUrl, AlbumSet.class);
@@ -165,6 +166,16 @@ public class ApiV1Client {
 		PrimaryImageQueryParams queryParams = new PrimaryImageQueryParams(primaryTag);
 		URI targetUri = buildUriWithQueryParams("/"+ EmbyUrlConstants.ITEMS + "/" + itemId + "/" + EmbyUrlConstants.IMAGES_PRIMARY, queryParams);
 		return targetUri.toString();
+	}
+
+	/**
+	 * Returns image at given url
+	 *
+	 * @param imageUrl
+	 * @return
+	 */
+	public byte[] getImage(String imageUrl) {
+		return restTemplate.getForObject(imageUrl, byte[].class);
 	}
 
 	// Getters

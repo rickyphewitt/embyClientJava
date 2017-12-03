@@ -68,6 +68,10 @@ public class ServiceSampleTests {
 		String primaryImage = sampleService.getPrimaryImage(albums.getItems().get(0).getId(), albums.getItems().get(0).getPrimaryImage());
 		Assert.assertNotNull(primaryImage);
 
+		// get primaryImage
+		byte[] image = sampleService.getImage(primaryImage);
+		Assert.assertNotNull(image);
+
 
 	}
 
