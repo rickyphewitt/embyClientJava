@@ -23,7 +23,10 @@ public class AlbumSetQueryParams implements QueryParams {
 		queryParams.set(EmbyQueryParameterConstants.SORT_ORDER, "Ascending");
 		queryParams.set(EmbyQueryParameterConstants.INCLUDE_ITEM_TYPES, "MusicAlbum");
 		queryParams.set(EmbyQueryParameterConstants.RECURSIVE, "true");
-		queryParams.set(EmbyQueryParameterConstants.ARTIST_IDS, this.artistId);
+		if(this.artistId != null) {
+			queryParams.set(EmbyQueryParameterConstants.ARTIST_IDS, this.artistId);
+		}
+
 		
 		return queryParams;
 	}

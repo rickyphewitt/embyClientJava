@@ -126,6 +126,19 @@ public class ApiV1Client {
 	public ArtistSet getArtists() {
 		return restTemplate.getForObject(embyUrl + "/"+ EmbyUrlConstants.ARTISTS, ArtistSet.class);
 	}
+
+	/**
+	 * Returns all albums
+	 * @ToDo paginate?
+	 *
+	 * @return
+	 */
+	public AlbumSet getAlbums() {
+		//http://emby:8096/emby/Users/480a0a58ffc64057ba19caa1142ad385/Items?SortBy=SortName&SortOrder=Ascending&IncludeItemTypes=MusicAlbum&Recursive=true
+		AlbumSetQueryParams queryParams = new AlbumSetQueryParams();
+		URI targetUrl= buildUriWithQueryParams("/"+ EmbyUrlConstants.ITEMS, queryParams);
+		return restTemplate.getForObject(targetUrl, AlbumSet.class);
+	}
 	
 	/**
 	 * Returns an AlbumSet object with a list of Album items

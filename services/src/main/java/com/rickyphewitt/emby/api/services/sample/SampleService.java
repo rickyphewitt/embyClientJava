@@ -35,7 +35,10 @@ public class SampleService {
 	public ArtistSet getArtists() {
 		return apiClient.getArtists();
 	}
-	
+	public AlbumSet getAlbums() {
+		return apiClient.getAlbums();
+	}
+
 	public AlbumSet getAlbumsByArtist(String artistId) {
 		return apiClient.getAlbumsByArtist(artistId);
 	}

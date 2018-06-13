@@ -32,7 +32,8 @@ public class ServiceSampleTests {
 	// retrieving artists/albums/songs and
 	// the byte stream of a single song after
 	// adding user/pass/server info to the properties
-	// file. comment the below @Ignore line out to run the test.
+	// file located at services/src/main/resources/application.properties
+	// comment the below @Ignore line out to run the test.
 
 	@Test
 	@Ignore("Comment this line out to run the test!")
@@ -71,6 +72,10 @@ public class ServiceSampleTests {
 		// get primaryImage
 		byte[] image = sampleService.getImage(primaryImage);
 		Assert.assertNotNull(image);
+
+		// get all albums
+		AlbumSet allAlbums = sampleService.getAlbums();
+		Assert.assertNotNull(allAlbums);
 
 
 	}
