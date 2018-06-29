@@ -1,5 +1,6 @@
 package test.com.rickyphewitt.emby.api.services.sample;
 
+import com.rickyphewitt.emby.api.data.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,11 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.rickyphewitt.emby.api.data.AlbumSet;
-import com.rickyphewitt.emby.api.data.ArtistSet;
-import com.rickyphewitt.emby.api.data.PublicServerInfo;
-import com.rickyphewitt.emby.api.data.SongSet;
-import com.rickyphewitt.emby.api.data.UserSet;
 import com.rickyphewitt.emby.api.services.sample.SampleService;
 
 import junit.framework.Assert;
@@ -56,6 +52,13 @@ public class ServiceSampleTests {
 		// get albums by artist
 		AlbumSet albums = sampleService.getAlbumsByArtist(artists.getItems().get(1).getId());
 		Assert.assertTrue(albums.getItems().size() > 0);
+		for(Album album: albums.getItems()) {
+			Assert.assertNotNull(album.getAlbumArtists());
+			for(Item albumArtist: album.getAlbumArtists()) {
+				Assert.assertNotNull(albumArtist.getId());
+				Assert.assertNotNull(albumArtist.getName());
+			}
+		}
 
 		// get songs by album
 		SongSet songs = sampleService.getSongsFromAlbum(albums.getItems().get(0).getId());

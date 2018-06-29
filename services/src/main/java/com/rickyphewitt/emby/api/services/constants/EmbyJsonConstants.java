@@ -39,6 +39,9 @@ public class EmbyJsonConstants {
 	public static final String ARTIST_IS_FOLDER = "IsFolder";
 	//public static final String ARTIST_PLAY_ACCESS = "PlayAccess";
 
+	// album constants
+	public static final String ALBUM_ARTISTS = "AlbumArtists";
+
 	// Song Constants
 	public static final String SONG_TRACK_NUMBER = "IndexNumber";
 	public static final String SONG_CONTAINER = "Container";

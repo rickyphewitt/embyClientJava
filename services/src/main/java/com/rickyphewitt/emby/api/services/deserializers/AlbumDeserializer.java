@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.*;
+import com.rickyphewitt.emby.api.data.Item;
 import org.springframework.stereotype.Service;
 
 import com.rickyphewitt.emby.api.data.Album;
@@ -51,6 +52,17 @@ public class AlbumDeserializer implements JsonDeserializer<Album>{
 		jsonVal = jsonObj.get(EmbyJsonConstants.MEDIA_RUN_TIME_TICKS);	
 		if(!DeserializerHelper.isNull(jsonVal)){
 			album.setRunTimeTicks(jsonVal.getAsInt());
+		}
+
+		JsonArray jsonArray = jsonObj.getAsJsonArray(EmbyJsonConstants.ALBUM_ARTISTS);
+		if(jsonArray != null && jsonArray.size() > 0) {
+
+			for(JsonElement jsonElement: jsonArray) {
+				JsonObject obj = jsonElement.getAsJsonObject();
+				Item item = new Item();
+				item.setName(obj.get(EmbyJsonConstants.NAME).getAsString());
+				item.setId(obj.get(EmbyJsonConstants.ID).getAsString());
+			}
 		}
 
 		JsonObject image_tags = jsonObj.getAsJsonObject(EmbyJsonConstants.IMAGE_TAGS);
