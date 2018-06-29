@@ -1,7 +1,9 @@
 package com.rickyphewitt.emby.api.services.deserializers;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.*;
@@ -54,6 +56,7 @@ public class AlbumDeserializer implements JsonDeserializer<Album>{
 			album.setRunTimeTicks(jsonVal.getAsInt());
 		}
 
+		List<Item> albumsArtists = new ArrayList<Item>();
 		JsonArray jsonArray = jsonObj.getAsJsonArray(EmbyJsonConstants.ALBUM_ARTISTS);
 		if(jsonArray != null && jsonArray.size() > 0) {
 
@@ -62,8 +65,11 @@ public class AlbumDeserializer implements JsonDeserializer<Album>{
 				Item item = new Item();
 				item.setName(obj.get(EmbyJsonConstants.NAME).getAsString());
 				item.setId(obj.get(EmbyJsonConstants.ID).getAsString());
+				albumsArtists.add(item);
 			}
 		}
+
+		album.setAlbumArtists(albumsArtists);
 
 		JsonObject image_tags = jsonObj.getAsJsonObject(EmbyJsonConstants.IMAGE_TAGS);
 		if(!DeserializerHelper.isNull(image_tags)){
